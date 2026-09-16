@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="面向高中多学科思维训练的因材施教演示系统" />
+    <title>星图 · 高中因材施教学习系统</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div><strong>星图</strong><small>因材施教</small></div>
+        </div>
+
+        <div class="subject-wrap">
+          <button class="subject-entry" id="subjectEntry" aria-expanded="false">
+            <span>科目</span><strong id="currentSubjectName">高中数学</strong><i>⌄</i>
+          </button>
+          <div class="subject-popover" id="subjectPopover" hidden></div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-item is-active" data-view="solve"><span>01</span><b>解题</b></button>
+          <button class="nav-item" data-view="knowledge"><span>02</span><b>知识地图</b></button>
+          <button class="nav-item" data-view="mistakes"><span>03</span><b>错题本</b></button>
+          <button class="nav-item" data-view="growth"><span>04</span><b>成长档案</b></button>
+        </nav>
+
+        <div class="sidebar-note">
+          <span>当前教材</span>
+          <b id="currentBook">人教A版 · 必修第二册</b>
+          <small id="currentUnit">第八章 立体几何初步</small>
+        </div>
+      </aside>
+
+      <div class="main-area">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" aria-label="打开导航">☰</button>
+          <div class="crumb"><span id="subjectCrumb">高中数学</span><i>/</i><b id="crumbTitle">解题</b></div>
+          <div class="student"><span>林</span><div><strong>林晓然</strong><small>高二 · 2班</small></div></div>
+        </header>
+
+        <main>
+          <section class="view is-visible" id="view-solve" data-title="解题">
+            <div class="solve-layout" id="mathSolve">
+              <article class="paper problem-paper">
+                <div class="paper-toolbar">
+                  <div><span class="eyebrow" id="problemNumber">错题 02</span><b id="problemTitle">直三棱柱中的线面平行证明</b><small class="problem-source" id="problemSource"></small></div>
+                  <div class="problem-toolbar-actions"><div class="problem-switcher" id="problemSwitcher" aria-label="切换错题"></div><span class="difficulty" id="problemDifficulty">中等</span></div>
+                </div>
+
+                <div class="problem-content">
+                  <p class="stem" id="problemStem"></p>
+                  <div class="pyramid-figure" id="problemFigure"></div>
+
+                  <section class="student-error">
+                    <div class="section-label">学生原解</div>
+                    <p id="studentAttempt"></p>
+                  </section>
+                  <section class="error-location">
+                    <div class="section-label">错误停在这里</div>
+                    <p id="diagnosisText"></p>
+                  </section>
+                </div>
+              </article>
+
+              <article class="paper thinking-paper">
+                <div class="thinking-content">
+                  <section class="thinking-block target-block">
+                    <header><span>看求证，想判定</span><b id="targetText">A₁B ∥ 平面 ADC₁</b></header>
+                    <div class="textbook-ref">
+                      <span>课本定位</span>
+                      <b id="criterionBook">人教A版 必修第二册 · 第八章 · 8.5.2</b>
+                      <strong id="criterionName">直线与平面平行的判定定理</strong>
+                      <p id="criterionText">平面外一条直线与此平面内的一条直线平行，则该直线与此平面平行。</p>
+                    </div>
+                    <ol class="condition-list" id="conditionList"></ol>
+                  </section>
+
+                  <section class="thinking-block known-block">
+                    <header><span>看已知，想性质</span><b id="knownSummary">直三棱柱 + 中点</b></header>
+                    <div class="property-list" id="propertyList"></div>
+                  </section>
+
+                  <section class="bridge-block" id="bridgeBlock">
+                    <span>现在缺什么？</span>
+                    <b id="missingText">缺一条位于平面 ADC₁ 内、并且与 A₁B 平行的直线。</b>
+                    <p id="bridgeText">D 已经是中点。还要在哪条线段上找到另一个中点，才能构造三角形中位线？</p>
+                  </section>
+
+                  <div class="thinking-actions">
+                    <button class="primary-button" id="nextReasoning">显示下一步</button>
+                    <button class="text-button" id="toggleSolution">查看完整证明</button>
+                  </div>
+                  <ol class="full-solution" id="fullSolution" hidden></ol>
+                </div>
+              </article>
+            </div>
+
+            <div class="chinese-layout" id="chineseSolve" hidden>
+              <article class="paper chinese-text-paper">
+                <div class="paper-toolbar">
+                  <div><span class="eyebrow" id="cnNumber">真题 01</span><b id="cnTitle"></b><small class="problem-source" id="cnSource"></small></div>
+                  <span class="difficulty">开放题 · 6分</span>
+                </div>
+                <div class="chinese-content">
+                  <div class="motto-banner"><span>文学阅读</span><strong>找反常，追原因；作比较，品意味。</strong></div>
+                  <section class="cn-question"><span>真题设问</span><p id="cnQuestion"></p></section>
+                  <section class="cn-anchor"><span>关键语句</span><blockquote id="cnAnchor"></blockquote></section>
+                  <div class="cn-evidence" id="cnEvidence"></div>
+                  <section class="student-error"><div class="section-label">学生原答</div><p id="cnAttempt"></p></section>
+                  <section class="error-location"><div class="section-label">问题不在“少写术语”，而在没发现反常</div><p id="cnDiagnosis"></p></section>
+                </div>
+              </article>
+
+              <article class="paper chinese-thinking-paper">
+                <div class="chinese-thinking">
+                  <header class="cn-thinking-head"><span>文学阅读的下一步</span><b>先解释矛盾，再组织答案</b></header>
+                  <div class="cn-step-tabs" id="cnStepTabs"></div>
+                  <section class="cn-step-card" id="cnStepCard"></section>
+                  <section class="cn-compare">
+                    <b>比较的两个层次</b>
+                    <div><span>少年当时</span><p>正在经历放牛的快乐与烦恼。</p></div>
+                    <div><span>成年回看</span><p>选择哪些往事进入文章，并给它们怎样的解释。</p></div>
+                  </section>
+                  <div class="thinking-actions">
+                    <button class="primary-button" id="cnNextStep">显示下一步</button>
+                    <button class="text-button" id="cnToggleAnswer">查看完整答案</button>
+                  </div>
+                  <ol class="full-solution" id="cnAnswer" hidden></ol>
+                </div>
+              </article>
+            </div>
+
+            <article class="paper subject-overview" id="subjectOverview" hidden>
+              <div class="subject-overview-head"><span>学科解题思路</span><h1 id="overviewTitle"></h1><p>验收标准：学生卡住时，这两句话能不能让他产生一个具体的下一步？</p></div>
+              <div class="subject-method-list" id="subjectMethodList"></div>
+            </article>
+          </section>
+
+          <section class="view" id="view-knowledge" data-title="知识地图">
+            <article class="paper knowledge-paper">
+              <div class="knowledge-toolbar">
+                <div><b>人教A版 · 必修第二册</b><span>整本书知识地图</span></div>
+                <div class="reading-tabs" role="tablist" aria-label="知识阅读方式">
+                  <button class="is-active" data-reading="thin">读薄</button>
+                  <button data-reading="thick">读厚</button>
+                </div>
+              </div>
+              <div class="book-layout">
+                <nav class="chapter-list" id="chapterList" aria-label="教材目录"></nav>
+                <section class="chapter-detail" id="chapterDetail"></section>
+              </div>
+            </article>
+          </section>
+
+          <section class="view" id="view-mistakes" data-title="错题本">
+            <article class="paper mistakes-paper">
+              <div class="mistake-toolbar">
+                <div><b>林晓然的错题本</b><span>按章节、知识点和错题序号建立索引</span></div>
+              </div>
+              <nav class="mistake-index" id="mistakeIndex" aria-label="错题索引"></nav>
+              <div class="mistake-layout">
+                <div class="mistake-list" id="mistakeList"></div>
+                <aside class="mistake-detail" id="mistakeDetail"></aside>
+              </div>
+            </article>
+          </section>
+
+          <section class="view" id="view-growth" data-title="成长档案">
+            <article class="paper growth-paper">
+              <div class="growth-toolbar">
+                <div><b>知识点掌握变化</b><span>随着考试累计，看是否真正趋于稳定</span></div>
+                <span>5 次考试</span>
+              </div>
+              <div class="curve-controls" id="curveControls"></div>
+              <div class="curve-chart-wrap">
+                <svg id="masteryCurve" viewBox="0 0 1040 470" role="img" aria-label="各知识点随考试累计的掌握曲线"></svg>
+              </div>
+              <div class="growth-table" id="growthTable"></div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./demo-data.js"></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
