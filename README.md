@@ -12,7 +12,9 @@
 
 ## 在线演示
 
-仓库启用 GitHub Pages 后，可通过仓库的 Pages 地址直接访问。该版本为纯前端演示，不包含登录、数据库与生产环境安全能力。
+[打开 GitHub Pages 在线演示](https://suat-lhy.github.io/adaptive-learning-demo/)
+
+该版本为纯前端演示，不包含登录、数据库与生产环境安全能力。
 
 ## 本地预览
 
